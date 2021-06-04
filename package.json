@@ -7,8 +7,6 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@rebass/layout": "^4.0.6",
-    "@rebass/preset": "^4.0.5",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -22,7 +20,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-toast-notifications": "^2.4.4",
-    "rebass": "^4.0.7",
     "theme-ui": "^0.9.1",
     "web-vitals": "^1.1.2"
   },

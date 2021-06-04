@@ -168,7 +168,7 @@ function List () {
                   right: 2,
                   backgroundColor: 'secondary',
                   color: Object.keys(favourites).includes(cat.id) ? '#ff6868' : 'white'
-              }}variant="primary" type="button" onClick={() => Object.keys(favourites).includes(cat.id) ? handleUnfavourite(cat.id) : handleFavourite(cat.id)}>
+              }}variant="secondary" type="button" onClick={() => Object.keys(favourites).includes(cat.id) ? handleUnfavourite(cat.id) : handleFavourite(cat.id)}>
                 <FontAwesomeIcon icon={faHeart} />
               </Button>
               <Flex sx={{

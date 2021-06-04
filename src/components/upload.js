@@ -1,14 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /** @jsxImportSource theme-ui */ 
 import {useEffect} from 'react';
-import {Flex, Box, Container} from 'theme-ui';
+import {Flex, Container} from 'theme-ui';
 import {useDropzone} from 'react-dropzone';
 import {uploadCats} from '../api';
 import { useToasts } from 'react-toast-notifications';
 import {useHistory} from 'react-router-dom';
 
 function Upload () {
-    const {acceptedFiles, getRootProps, getInputProps, } = useDropzone();
+    const {acceptedFiles, getRootProps, getInputProps, } = useDropzone({
+        multiple: false
+    });
     const { addToast } = useToasts();
     const history = useHistory();
 
