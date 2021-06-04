@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /** @jsxImportSource theme-ui */ 
 import {useEffect} from 'react';
-import {Flex, Box} from 'theme-ui';
+import {Flex, Box, Container} from 'theme-ui';
 import {useDropzone} from 'react-dropzone';
 import {uploadCats} from '../api';
 import { useToasts } from 'react-toast-notifications';
@@ -12,13 +12,6 @@ function Upload () {
     const { addToast } = useToasts();
     const history = useHistory();
 
-    const files = acceptedFiles.map(file => (
-        <li key={file.path}>
-          {file.path} - {file.size} bytes
-          <pre>{JSON.stringify(file, null, 2)}</pre>
-        </li>
-      ));
-
       const uploadCatImage = async (files) => {
         if(acceptedFiles.length) {
             try {
@@ -28,6 +21,7 @@ function Upload () {
                   })
                 await uploadCats(files);
                 history.push('/');
+                
             } catch (err) {
                 addToast('Something went wrong uploading image', {
                     appearance: 'error',
@@ -44,27 +38,23 @@ function Upload () {
      }, [acceptedFiles])
 
     return (
-        <Box as="section" mx="auto" sx={{
-            minWidth:300,
-            maxWidth: 1280
+        <Container sx={{
+            maxWidth: 1280,
+            padding: [1, 2, 4]
         }}>
         <Flex {...getRootProps({className: 'dropzone'})} sx={{
             justifyContent: 'center',
-            padding: 80,
+            padding: [20, 40, 60],
             backgroundColor: 'muted',
             border: '1px dashed',
             borderColor: 'secondary'
         }}>
           <input {...getInputProps()} />
           <p sx={{
-              fontSize: '48px'
+              fontSize: [16, 32, 48]
           }}>Drag 'n' drop some files here, or click to select files</p>
         </Flex>
-        <aside>
-          <h4>Files</h4>
-          <ul>{files}</ul>
-        </aside>
-        </Box>
+        </Container>
     )
 }
 

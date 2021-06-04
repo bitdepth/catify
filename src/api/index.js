@@ -1,12 +1,14 @@
 import {API_URL, API_KEY} from '../constants';
-import {nanoid} from 'nanoid';
+
+const catSubId = localStorage.getItem('CAT_SUB_ID');
+
 export const uploadCats = (files) => {
     const formData = new FormData();
 
     files.forEach((file, index) => {
         formData.append('name', `file${index}`);
         formData.append('file', file);
-        formData.append('sub_id', nanoid())
+        formData.append('sub_id', catSubId)
     })
 
     fetch(`${API_URL}images/upload`,{

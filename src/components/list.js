@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /** @jsxImportSource theme-ui */ 
 import {useState, useEffect} from 'react';
-import {Card, Image, Text} from 'rebass';
-import {Button, Flex, Box} from 'theme-ui';
+import {Link} from 'react-router-dom';
+import {Button, Flex, Box, AspectImage, Alert, Container, Spinner, Text, Card} from 'theme-ui';
 import { useToasts } from 'react-toast-notifications';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +15,8 @@ function List () {
     const [cats, setCats] = useState([]);
     const [votes, setVotes] = useState({});
     const [favourites, setFavourites] = useState({});
+
+    const [catsInflight, setCatsInflight] = useState(true);
     const { addToast } = useToasts();
 
     const tallyVotes = (votes) => {
@@ -34,18 +36,8 @@ function List () {
     const fetchCats = async () => {
         
         try {
-            const catList = await listCats();
-            setCats(catList);
-        } catch (err) {
-            addToast('Something went wrong retrieving cats', {
-                appearance: 'error',
-                autoDismiss: true,
-              })
-        }
-
-        try {
             const votes = await getVotes();
-            setVotes(tallyVotes(groupBy(votes, 'image_id')))
+            setVotes(tallyVotes(groupBy(votes, 'image_id')));
         } catch (err) {
             addToast('Something went wrong retrieving votes', {
                 appearance: 'error',
@@ -58,6 +50,19 @@ function List () {
             setFavourites(groupBy(favourites, 'image_id'));
         } catch (err) {
             addToast('Something went wrong retrieving favourites', {
+                appearance: 'error',
+                autoDismiss: true,
+              })
+        }
+
+        try {
+            setCatsInflight(true);
+            const catList = await listCats();
+            setCats(catList);
+            setCatsInflight(false);
+        } catch (err) {
+            setCatsInflight(false);
+            addToast('Something went wrong retrieving cats', {
                 appearance: 'error',
                 autoDismiss: true,
               })
@@ -120,12 +125,26 @@ function List () {
         }
     }
 
-
     return (
-        <div>
-        <Tiles columns={[1, 2, 4]} sx={{
+        <Container sx={{
             maxWidth: 1280,
-        }} mx="auto">
+            padding: [1, 2, 4]
+        }}>
+            {(!cats.length && !catsInflight) && <Alert mx="auto" variant='secondary' mb={2}>There are no cat images to display please try <Link to="/upload">uploading</Link> some</Alert>}
+
+        <Button mx="auto" onClick={fetchCats} sx={{
+                backgroundColor: 'secondary',
+                marginBottom: 4
+            }}>Refresh cat images</Button>
+            {catsInflight && (
+                <Flex sx={{
+                    justifyContent:'center'
+                }}>
+                    <Spinner size={100} />
+                </Flex>
+            )}
+  
+        <Tiles columns={[1, 2, 4]}>
         {cats.map(cat => (
             <Card key={cat.id} variant="secondary" sx={{
                 position: 'relative',
@@ -141,12 +160,12 @@ function List () {
                     overflow: 'hidden',
                     mb: 2,
                 }}>
-                    <Image src={cat.url} />
+                    <AspectImage ratio={4 / 3} src={cat.url} />
                 </Box>
               <Button sx={{
-                  top: 0,
+                  top: 2,
                   position:'absolute',
-                  right: 1,
+                  right: 2,
                   backgroundColor: 'secondary',
                   color: Object.keys(favourites).includes(cat.id) ? '#ff6868' : 'white'
               }}variant="primary" type="button" onClick={() => Object.keys(favourites).includes(cat.id) ? handleUnfavourite(cat.id) : handleFavourite(cat.id)}>
@@ -166,7 +185,7 @@ function List () {
             </Card>
         ))}
         </Tiles>
-        </div>
+        </Container>
     )
 }
 

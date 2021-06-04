@@ -25,7 +25,7 @@ function App() {
 
     <Text as="h1" sx={{
       	color: 'mix(#fff, #e91e63, 85%)',
-        fontSize: '200px',
+        fontSize: [25, 50, 150],
         fontWeight: 900,
         textShadow: textShadow,
         transform: 'rotate(337deg)'
@@ -33,7 +33,7 @@ function App() {
       <Button sx={{flex: 1}}><Link sx={{
         color: 'background',
         textDecoration:'none',
-        fontSize: 80,
+        fontSize: [20, 40, 80],
         fontFamily: 'system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif'
         }} to="/">Home</Link></Button>
       <Button sx={{
@@ -41,7 +41,7 @@ function App() {
         }}><Link to="/upload" sx={{
           color: 'background',
           textDecoration:'none',
-          fontSize: 80,
+          fontSize: [20, 40, 80],
           }}>Upload</Link></Button>
     </Flex>
     <Switch>
