@@ -7,6 +7,8 @@ import { deep } from "@theme-ui/presets";
 import List from "./components/list";
 import Upload from "./components/upload";
 import { nanoid } from "nanoid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpload } from "@fortawesome/free-solid-svg-icons";
 
 const textShadow =
   "-0.0075em 0.0075em 0 #fef2f6, 0.005em 0.005em 0 #f6a5c1, 0.01em 0.01em 0 #f7aac4, 0.015em 0.015em #f7aec7, 0.02em 0.02em 0 #f8b3ca, 0.025em 0.025em 0 #f8b7cd, 0.03em 0.03em 0 #f8bcd0, 0.035em 0.035em 0 #f9c0d3";
@@ -77,6 +79,12 @@ function App() {
               }}
             >
               Upload
+              <FontAwesomeIcon
+                sx={{
+                  padding: 2
+                }}
+                icon={faUpload}
+              />
             </Link>
           </Button>
         </Flex>
