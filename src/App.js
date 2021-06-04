@@ -46,7 +46,10 @@ function App() {
           <Link
             to="/"
             sx={{
-              color: "mix(#fff, #e91e63, 85%)",
+              color: "text",
+              "&:hover": {
+                color: "primary"
+              },
               textDecoration: "none"
             }}
           >
