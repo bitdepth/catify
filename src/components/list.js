@@ -2,11 +2,10 @@
 /** @jsxImportSource theme-ui */ 
 import {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import {Button, Flex, Box, AspectImage, Alert, Container, Spinner, Text, Card} from 'theme-ui';
+import {Button, Flex, Box, AspectImage, Alert, Container, Spinner, Text, Card, Grid} from 'theme-ui';
 import { useToasts } from 'react-toast-notifications';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown, faHeart } from '@fortawesome/free-solid-svg-icons';
-import {Tiles} from '@rebass/layout';
 import {listCats, voteCat, getVotes, favouriteCat, unfavouriteCat, getFavourites} from '../api';
 import {groupBy} from 'lodash';
 
@@ -144,7 +143,7 @@ function List () {
                 </Flex>
             )}
   
-        <Tiles columns={[1, 2, 4]}>
+        <Grid gap={2} columns={[1, 2, 4]}>
         {cats.map(cat => (
             <Card key={cat.id} variant="secondary" sx={{
                 position: 'relative',
@@ -184,7 +183,7 @@ function List () {
               </Flex>
             </Card>
         ))}
-        </Tiles>
+        </Grid>
         </Container>
     )
 }
