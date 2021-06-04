@@ -49,7 +49,7 @@ function App() {
         color: 'background',
         textDecoration:'none',
         fontSize: [20, 40, 80],
-        fontFamily: 'system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif'
+        fontFamily: 'heading'
         }} to="/">Home</Link></Button>
       <Button sx={{
         flex: 1, 
@@ -57,9 +57,9 @@ function App() {
           color: 'background',
           textDecoration:'none',
           fontSize: [20, 40, 80],
+          fontFamily: 'heading'
           }}>Upload</Link></Button>
     </Flex>
-    <Button variant="secondary">Test Button</Button>
     <Switch>
       <Route path="/upload">
         <Upload />
