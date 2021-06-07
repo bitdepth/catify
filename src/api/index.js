@@ -11,7 +11,7 @@ export const uploadCats = (files) => {
     formData.append("sub_id", catSubId);
   });
 
-  fetch(`${API_URL}images/upload`, {
+  return fetch(`${API_URL}images/upload`, {
     method: "POST",
     headers: {
       "x-api-key": API_KEY
