@@ -154,17 +154,6 @@ function List() {
         padding: [1, 2, 4]
       }}
     >
-      <Button
-        mx="auto"
-        onClick={fetchCats}
-        sx={{
-          backgroundColor: "secondary",
-          marginBottom: 4
-        }}
-      >
-        Refresh cat images
-      </Button>
-
       {!cats.length && !catsInflight && (
         <Alert mx="auto" variant="secondary" mb={2}>
           There are no cat images to display please try &nbsp;
